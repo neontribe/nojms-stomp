@@ -1,3 +1,6 @@
+/**
+ * Published under a Creative Commons Attribution-ShareAlike 4.0 International License.
+ */
 
 import java.io.IOException;
 import java.net.UnknownHostException;
