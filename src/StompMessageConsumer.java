@@ -32,6 +32,19 @@ public class StompMessageConsumer {
         String user = "guest";
         String pass = "P@ssword1";
         
+        if (cmd.hasOption("h")) {
+            host = cmd.getOptionValue("h");
+        }
+        if (cmd.hasOption("p")) {
+            port = cmd.getOptionValue("p");
+        }
+        if (cmd.hasOption("u")) {
+            user = cmd.getOptionValue("u");
+        }
+        if (cmd.hasOption("P")) {
+            pass = cmd.getOptionValue("P");
+        }
+        
         try {
             StompConnection connection = new StompConnection();
 
