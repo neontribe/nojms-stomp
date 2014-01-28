@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 import org.apache.activemq.transport.stomp.Stomp;
 import org.apache.activemq.transport.stomp.StompConnection;
+import org.apache.activemq.transport.stomp.StompFrame;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.Options;
@@ -71,8 +72,11 @@ public class StompMessagePublisher {
             headers.put(Stomp.Headers.CONTENT_LENGTH, String.valueOf(json.length()));
 
             connection.send("jms.queue.rewardPoints", json, null, headers);
+            StompFrame stomp = connection.receive();
 
-            System.out.println("message sent!");
+            System.out.println("Message sent! " + user + ':' + pass + '@' + host + ":" + port);
+            System.out.println("\n++ The server responded ++");
+            System.out.println(stomp);
             connection.disconnect();
             connection.close();
         } catch (UnknownHostException e) {
