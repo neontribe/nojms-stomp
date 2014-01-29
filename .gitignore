@@ -2,3 +2,7 @@ nbproject/private
 *.class
 /dist/
 /build/
+.DS_Store
+.classpath
+.project
+.settings/
