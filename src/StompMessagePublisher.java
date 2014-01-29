@@ -74,7 +74,9 @@ public class StompMessagePublisher {
             connection.send("jms.queue.rewardPoints", json, null, headers);
             StompFrame stomp = connection.receive();
 
-            System.out.println("Message sent! " + user + ':' + pass + '@' + host + ":" + port);
+            System.out.println("Message sent!");
+            System.out.println(user + ':' + pass + '@' + host + ":" + port);
+            System.out.println(json);
             System.out.println("\n++ The server responded ++");
             System.out.println(stomp);
             connection.disconnect();
