@@ -72,6 +72,7 @@ public class StompMessagePublisher {
             connection.connect(user, pass);
 
             send(host, port, user, pass, destination, json, connection);
+            
             connection.disconnect();
             connection.close();
         } catch (UnknownHostException e) {
