@@ -54,6 +54,7 @@ public class StompMessageConsumer {
 //      connection.connect("system", "manager");
 
             connection.subscribe("jms.queue.memberRegistration", Subscribe.AckModeValues.CLIENT);
+            connection.subscribe(StompMessagePublisher.MEMBER_REGISTRATION_JMS_DESTINATION, Subscribe.AckModeValues.CLIENT);
 
             connection.begin("tx2");
             StompFrame message = connection.receive();

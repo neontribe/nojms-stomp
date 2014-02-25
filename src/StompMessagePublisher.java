@@ -22,9 +22,9 @@ public class StompMessagePublisher {
     private static final String MEMBER_REGISTRATION_JSON = "{\"fbc_unique_acct_id\":\"4234567890123413\",\"last_name\":\"Fallon\",\"first_name\":\"Cally\",\"middle_initial\":\" \",\"prefix\":\"AMiss\",\"suffix\":\"Ph.D\",\"full_name\":\"Fallon Cally\",\"address_line_1\":\"2165 Libero.Rd.\",\"address_line_2\":\"Ap #875-3531 Et Rd.\",\"city\":\"Jandrain-Jandrenouille\",\"state\":\"AK\",\"zip_code\":\".20083\",\"primary_phone_number\":\"136567581\",\"secondary_phone_number\":\"6125669026\",\"email\":\"0Cally.Fallon@email.com\",\"allegiant_customer_id\":\"allegiant_customer_Id111\",\"parsing_batch\":\"1390473784_298389220\",\"channel_id\":1,\"token\":\"myToken\"}";
     private static final String MEMBER_UPDATE_JSON = "{\"loyalty_account_id\":\"1\",\"fbc_unique_acct_id\":\"1010028956904358\",\"full_name\":\"UPDATED\",\"address_line_1\":\"UPDATED DODGE ST\",\"address_line_2\":\"\",\"city\":\"UPDATED\",\"state\":\"NE\",\"zip_code\":\"681970003\",\"email\":\"UPDATED@asd.com\",\"parsing_batch\":\"1390320657_1853233996\", \"token\":\"myToken\"}";
 
-    private static final String REWARD_POINTS_JMS_DESTINATION = "jms.queue.rewardPoints";
-    private static final String MEMBER_REGISTRATION_JMS_DESTINATION = "jms.queue.memberRegistration";
-    private static final String MEMBER_UPDATE_JMS_DESTINATION = "jms.queue.memberUpdate";
+    public static final String REWARD_POINTS_JMS_DESTINATION = "jms.queue.loyalty.exported.rewardPoints";
+    public static final String MEMBER_REGISTRATION_JMS_DESTINATION = "jms.queue.loyalty.exported.memberRegistration";
+    public static final String MEMBER_UPDATE_JMS_DESTINATION = "jms.queue.loyalty.exported.memberUpdate";
 
     public static void main(String[] args) throws ParseException {
 
