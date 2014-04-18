@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 import org.apache.activemq.transport.stomp.Stomp;
 import org.apache.activemq.transport.stomp.StompConnection;
-import org.apache.activemq.transport.stomp.StompFrame;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.Options;
@@ -18,9 +17,9 @@ import org.apache.commons.cli.PosixParser;
 
 public class StompMessagePublisher {
 
-    private static final String REWARD_POINTS_JSON = "{\"loyalty_account_id\":\"1\", \"fbc_unique_acct_id\":\"1010028956904358\", \"points\":\"1\", \"sign\":\"+\", \"offer_name\":\"PR0141\", \"forfeit_flag\":\"N\", \"parsing_batch\":\"1391079208_636438973\", \"channel_id\":1, \"transaction_source_id\":1, \"transaction_comment\":\"coment\", \"transaction_time\":1389782282, \"transaction_type\":\"E\", \"token\":\"8eb0a18834d37b94e398e64677bcd85d\"}";
-    private static final String MEMBER_REGISTRATION_JSON = "{\"fbc_unique_acct_id\":\"4234567890123413\",\"last_name\":\"Fallon\",\"first_name\":\"Cally\",\"middle_initial\":\" \",\"prefix\":\"AMiss\",\"suffix\":\"Ph.D\",\"full_name\":\"Fallon Cally\",\"address_line_1\":\"2165 Libero.Rd.\",\"address_line_2\":\"Ap #875-3531 Et Rd.\",\"city\":\"Jandrain-Jandrenouille\",\"state\":\"AK\",\"zip_code\":\".20083\",\"primary_phone_number\":\"136567581\",\"secondary_phone_number\":\"6125669026\",\"email\":\"0Cally.Fallon@email.com\",\"allegiant_customer_id\":\"allegiant_customer_Id111\",\"parsing_batch\":\"1390473784_298389220\",\"channel_id\":1,\"token\":\"myToken\"}";
-    private static final String MEMBER_UPDATE_JSON = "{\"loyalty_account_id\":\"1\",\"fbc_unique_acct_id\":\"1010028956904358\",\"full_name\":\"UPDATED\",\"address_line_1\":\"UPDATED DODGE ST\",\"address_line_2\":\"\",\"city\":\"UPDATED\",\"state\":\"NE\",\"zip_code\":\"681970003\",\"email\":\"UPDATED@asd.com\",\"parsing_batch\":\"1390320657_1853233996\", \"token\":\"myToken\"}";
+    public static final String REWARD_POINTS_JSON = "{\"loyalty_account_id\":\"1\", \"fbc_unique_acct_id\":\"1210028956904358\", \"points\":\"1\", \"sign\":\"+\", \"offer_name\":\"PR0141\", \"forfeit_flag\":\"N\", \"parsing_batch\":\"1391079208_636438973\", \"channel_id\":1, \"transaction_source_id\":1, \"transaction_comment\":\"coment\", \"transaction_time\":1389782282, \"transaction_type\":\"E\", \"token\":\"8eb0a18834d37b94e398e64677bcd85d\"}";
+    public static final String MEMBER_REGISTRATION_JSON = "{\"fbc_unique_acct_id\":\"4134362776535813\",\"last_name\":\"Fallon\",\"first_name\":\"Cally\",\"middle_initial\":\" \",\"prefix\":\"AMiss\",\"suffix\":\"Ph.D\",\"full_name\":\"Fallon Cally\",\"address_line_1\":\"2165 Libero.Rd.\",\"address_line_2\":\"Ap #875-3531 Et Rd.\",\"city\":\"Jandrain-Jandrenouille\",\"state\":\"AK\",\"zip_code\":\".20083\",\"primary_phone_number\":\"136567581\",\"secondary_phone_number\":\"6125669026\",\"email\":\"0Cally.Fallon@email.com\",\"allegiant_customer_id\":\"allegiant_customer_Id111\",\"parsing_batch\":\"1390473784_298389220\",\"channel_id\":1,\"token\":\"myToken\"}";
+    public static final String MEMBER_UPDATE_JSON = "{\"loyalty_account_id\":\"1\",\"fbc_unique_acct_id\":\"1010028956904358\",\"full_name\":\"UPDATED\",\"address_line_1\":\"UPDATED DODGE ST\",\"address_line_2\":\"\",\"city\":\"UPDATED\",\"state\":\"NE\",\"zip_code\":\"681970003\",\"email\":\"UPDATED@asd.com\",\"parsing_batch\":\"1390320657_1853233996\", \"token\":\"myToken\"}";
 
     public static final String REWARD_POINTS_JMS_DESTINATION = "jms.queue.loyalty.exported.rewardPoints";
     public static final String MEMBER_REGISTRATION_JMS_DESTINATION = "jms.queue.loyalty.exported.memberRegistration";
@@ -71,8 +70,9 @@ public class StompMessagePublisher {
             connection.open(host, Integer.parseInt(port));
             connection.connect(user, pass);
 
-            send(host, port, user, pass, destination, json, connection);
-            
+            for (int i = 0; i < 1; i++) {
+                send(host, port, user, pass, destination, json, connection);
+            }
             connection.disconnect();
             connection.close();
         } catch (UnknownHostException e) {
@@ -90,14 +90,6 @@ public class StompMessagePublisher {
         headers.put(Stomp.Headers.CONTENT_LENGTH, String.valueOf(json.length()));
 
         connection.send(destination, json, null, headers);
-        StompFrame stomp = connection.receive();
-
-        System.out.println("Message sent to " + destination);
-        System.out.println(user + ':' + pass + '@' + host + ":" + port);
-        System.out.println(json);
-        System.out.println("\n++ The server responded ++");
-        System.out.println(stomp);
-        System.out.println("\n");
     }
 
 }
