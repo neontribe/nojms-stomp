@@ -17,9 +17,9 @@ import org.apache.commons.cli.PosixParser;
 
 public class StompMessagePublisher {
 
-    public static final String REWARD_POINTS_JSON = "{\"loyalty_account_id\":\"1\", \"fbc_unique_acct_id\":\"1210028956904358\", \"points\":\"1\", \"sign\":\"+\", \"offer_name\":\"PR0141\", \"forfeit_flag\":\"N\", \"parsing_batch\":\"1391079208_636438973\", \"channel_id\":1, \"transaction_source_id\":1, \"transaction_comment\":\"coment\", \"transaction_time\":1389782282, \"transaction_type\":\"E\", \"token\":\"8eb0a18834d37b94e398e64677bcd85d\"}";
-    public static final String MEMBER_REGISTRATION_JSON = "{\"fbc_unique_acct_id\":\"4134362776535813\",\"last_name\":\"Fallon\",\"first_name\":\"Cally\",\"middle_initial\":\" \",\"prefix\":\"AMiss\",\"suffix\":\"Ph.D\",\"full_name\":\"Fallon Cally\",\"address_line_1\":\"2165 Libero.Rd.\",\"address_line_2\":\"Ap #875-3531 Et Rd.\",\"city\":\"Jandrain-Jandrenouille\",\"state\":\"AK\",\"zip_code\":\".20083\",\"primary_phone_number\":\"136567581\",\"secondary_phone_number\":\"6125669026\",\"email\":\"0Cally.Fallon@email.com\",\"allegiant_customer_id\":\"allegiant_customer_Id111\",\"parsing_batch\":\"1390473784_298389220\",\"channel_id\":1,\"token\":\"myToken\"}";
-    public static final String MEMBER_UPDATE_JSON = "{\"loyalty_account_id\":\"1\",\"fbc_unique_acct_id\":\"1010028956904358\",\"full_name\":\"UPDATED\",\"address_line_1\":\"UPDATED DODGE ST\",\"address_line_2\":\"\",\"city\":\"UPDATED\",\"state\":\"NE\",\"zip_code\":\"681970003\",\"email\":\"UPDATED@asd.com\",\"parsing_batch\":\"1390320657_1853233996\", \"token\":\"myToken\"}";
+    public static final String REWARD_POINTS_JSON = "{\"loyaltyAccountId\":\"6761023031994\", \"externalProviderId\":\"4134361776535813\", \"points\":\"1\", \"sign\":\"+\", \"offerCode\":\"PR0141\", \"forfeitFlag\":\"N\", \"parsingBatch\":\"1391079208_636438973\", \"channelId\":1, \"transactionSourceId\":1, \"transactionComment\":\"coment\", \"transactionTime\":1389782282, \"transactionType\":\"E\", \"operatorId\":-1, \"token\":\"8eb0a18834d37b94e398e64677bcd85d\"}";
+    public static final String MEMBER_REGISTRATION_JSON = "{\"externalProviderId\":\"4134361776535813\",\"lastName\":\"Fallon\",\"firstName\":\"Cally\",\"middleInitial\":\" \",\"prefix\":\"AMiss\",\"suffix\":\"Ph.D\",\"fullName\":\"Fallon Cally\",\"addressLine1\":\"2165 Libero.Rd.\",\"addressLine2\":\"Ap #875-3531 Et Rd.\",\"city\":\"Jandrain-Jandrenouille\",\"state\":\"AK\",\"zipCode\":\".20083\",\"primaryPhoneNumber\":\"136567581\",\"secondaryPhoneNumber\":\"6125669026\",\"email\":\"0Cally.Fallon@email.com\",\"allegiantCustomerId\":\"111111\",\"parsingBatch\":\"1390473784_298389220\",\"channelId\":1,\"token\":\"myToken\"}";
+    public static final String MEMBER_UPDATE_JSON = "{\"loyaltyAccountId\":\"6761023031994\",\"externalProviderId\":\"4134361776535813\",\"fullName\":\"Mr Clayton Andrei Jr\",\"addressLine1\":\"4590 Wilkinson Street\",\"addressLine2\":\"6009 ON AAAAAAAAA\",\"city\":\"Austin\",\"state\":\"CA\",\"zipCode\":\"6186\",\"email\":\"AndreiClayton@rhyta.com\",\"parsingBatch\":\"1397817086_603333107\", \"token\":\"f971c633287139e384f950f58067e8c7\"}";
 
     public static final String REWARD_POINTS_JMS_DESTINATION = "jms.queue.loyalty.exported.rewardPoints";
     public static final String MEMBER_REGISTRATION_JMS_DESTINATION = "jms.queue.loyalty.exported.memberRegistration";
@@ -42,8 +42,8 @@ public class StompMessagePublisher {
         String port = "61613";
         String user = "guest";
         String pass = "P@ssword1";
-        String destination = MEMBER_REGISTRATION_JMS_DESTINATION;
-        String json = MEMBER_REGISTRATION_JSON;
+        String destination = MEMBER_UPDATE_JMS_DESTINATION;
+        String json = MEMBER_UPDATE_JSON;
 
         if (cmd.hasOption("h")) {
             host = cmd.getOptionValue("h");
