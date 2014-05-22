@@ -16,6 +16,8 @@ import org.apache.commons.cli.PosixParser;
 
 public class StompMessagePublisher {
 
+	static boolean verbose = false;
+
 	public static void main(String[] args) throws Exception {
 		Options options = new Options();
 		options.addOption("h", true, "Host to connect to");
@@ -24,6 +26,7 @@ public class StompMessagePublisher {
 		options.addOption("P", true, "Password");
 		options.addOption("d", true, "JMS Destination");
 		options.addOption("j", true, "JSON to send");
+		options.addOption("v", false, "Verbose");
 
 		CommandLineParser parser = new PosixParser();
 		CommandLine cmd = parser.parse(options, args);
@@ -54,6 +57,9 @@ public class StompMessagePublisher {
 		if (cmd.hasOption("j")) {
 			json = cmd.getOptionValue("j");
 		}
+		if (cmd.hasOption("v")) {
+			verbose = true;
+		}
 
 		File source = new File(json);
 		if (source.exists()) {
@@ -68,21 +74,18 @@ public class StompMessagePublisher {
 
 		StompConnection connection = new StompConnection();
 
-		System.out.println("Json: " + json);
+		if (verbose) {
+			System.out.println("Host: " + host + ", port: " + port + ", user: " + user + ", pass: " + pass + "\n\tdestination: " + destination + "\n\tjson: " + json);
+		}
 		connection.open(host, Integer.parseInt(port));
 		connection.connect(user, pass);
 
-		// I aasume this loop is to test multiple messages.
-		// By embedding this here we make the tool less useful for other people
-		// Use a file system loop or a macro to call this many times.
-//            for (int i = 0; i < 1; i++) {
-//                System.out.println(" msg " + i);
-//                String newJson = json.replaceAll(""+FBC_ACCT_ID,""+(FBC_ACCT_ID+i));
-//                send(host, port, user, pass, destination, newJson, connection);
-//            }
 		send(host, port, user, pass, destination, json, connection);
 		connection.disconnect();
 		connection.close();
+		if (verbose) {
+			System.out.println("Connection closed.");
+		}
 	}
 
 	private static void send(String host, String port, String user, String pass, String destination, String json,
