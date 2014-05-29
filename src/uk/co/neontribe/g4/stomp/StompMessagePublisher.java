@@ -16,6 +16,10 @@ import org.apache.commons.cli.PosixParser;
 
 public class StompMessagePublisher {
 
+	public static final String REWARD_POINTS_JMS_DESTINATION = "jms.queue.loyalty.exported.rewardPoints";
+	public static final String MEMBER_REGISTRATION_JMS_DESTINATION = "jms.queue.loyalty.exported.memberRegistration";
+	public static final String MEMBER_UPDATE_JMS_DESTINATION = "jms.queue.loyalty.exported.rewardPoints";
+
 	static boolean verbose = false;
 
 	public static void main(String[] args) throws Exception {
@@ -36,8 +40,8 @@ public class StompMessagePublisher {
 		String user = "guest";
 		String pass = "P@ssword1";
 
-		String destination = Installer.MEMBER_REGISTRATION_JMS_DESTINATION;
-		String json = Installer.MEMBER_REGISTRATION_JSON;
+		String destination = MEMBER_REGISTRATION_JMS_DESTINATION;
+		String json = null;
 
 		if (cmd.hasOption("h")) {
 			host = cmd.getOptionValue("h");
