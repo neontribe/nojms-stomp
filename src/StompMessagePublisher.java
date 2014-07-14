@@ -17,24 +17,31 @@ import org.apache.commons.cli.PosixParser;
 
 public class StompMessagePublisher {
 
-    private static final long FBC_ACCT_ID = 1013956111123337L;
-    private static final long CUSTOMER_ACCT_ID = 1234567890002L;
+    // registration constants
+    private static final long EXTERNAL_PROVIDER_ID = 7891956190123333L;  // fnbo
+    private static final long CUSTOMER_ACCT_ID = 22222222;              // allegiant
 
-    private static final long LOYALTY_ACCT_ID = 6761023033221L;
+    // reward points constants
+    private static final long LOYALTY_ACCT_ID = 6761023031987L;
+    private static final long POINTS = 3000;
+    private static final String SIGN = "+";
 
-    public static final String REWARD_POINTS_JSON_MERGE = "{\"recordId\":\"111234\", \"loyaltyAccountId\":\""+LOYALTY_ACCT_ID+"\", \"externalProviderId\":\"" + FBC_ACCT_ID + "\",\"fullName\":\"Mr Cosmin Sandu Jr\",\"addressLine1\":\"4590 Padurii 12\",\"addressLine2\":\"6009 ON BUBU\",\"city\":\"Cluj\",\"state\":\"CJ\",\"zipCode\":\"6186\",\"email\":\"cossandu@rhyta.com\",\"points\":\"1\", \"sign\":\"+\", \"offerCode\":\"PR0141\", \"forfeitFlag\":\"N\", \"parsingBatch\":\"1391079208_636438973\", \"channelId\":1, \"transactionSourceId\":1, \"transactionComment\":\"coment\", \"transactionTime\":1389782282, \"transactionType\":\"E\", \"operatorId\":-1, \"token\":\"8eb0a18834d37b94e398e64677bcd11d\"}";
-   // public static final String REWARD_POINTS_JSON = "{\"loyaltyAccountId\":\"6761023031994\", \"externalProviderId\":\"4134361776535813\", \"points\":\"1\", \"sign\":\"+\", \"offerCode\":\"PR0141\", \"forfeitFlag\":\"N\", \"parsingBatch\":\"1391079208_636438973\", \"channelId\":1, \"transactionSourceId\":1, \"transactionComment\":\"coment\", \"transactionTime\":1389782282, \"transactionType\":\"E\", \"operatorId\":-1, \"token\":\"8eb0a18834d37b94e398e64677bcd85d\"}";
+    public static final String REWARD_POINTS_JSON_MERGE = "{\"recordId\":\"11123\""
+            + ", \"loyaltyAccountId\":\"" + LOYALTY_ACCT_ID + "\""
+            + ", \"externalProviderId\":\"" + EXTERNAL_PROVIDER_ID + "\""
+            + ",\"fullName\":\"Mr Clayton Andrei Jr\",\"addressLine1\":\"4590 Wilkinson Street\",\"addressLine2\":\"6009 ON AAAAAAAAA\",\"city\":\"Austin\",\"state\":\"CA\",\"zipCode\":\"6186\",\"email\":\"AndreiClayton@rhyta.com\""
+            + ",\"points\":\"" + POINTS + "\""
+            + ", \"sign\":\"" + SIGN + "\""
+            + ", \"offerCode\":\"PR0141\", \"forfeitFlag\":\"N\", \"parsingBatch\":\"1391079208_636438973\", \"channelName\":\"FNBO Premium Card\", \"transactionComment\":\"coment\", \"transactionTime\":1389782282, \"transactionType\":\"E\", \"operatorId\":-1, \"token\":\"8eb0a18834d37b94e398e64677bcd85d\"}";
 
-//    public static final String MEMBER_REGISTRATION_JSON = "{\"recordId\":\"10123\", \"externalProviderId\":\""+FBC_ACCT_ID+"\",\"lastName\":\"Fallon\",\"firstName\":\"Cally\",\"middleInitial\":\" \",\"prefix\":\"AMiss\",\"suffix\":\"Ph.D\",\"fullName\":\"Fallon Cally\",\"addressLine1\":\"2165 Libero.Rd.\",\"addressLine2\":\"Ap #875-3531 Et Rd.\",\"city\":\"Jandrain-Jandrenouille\",\"state\":\"AK\",\"zipCode\":\".20083\",\"primaryPhoneNumber\":\"136567581\",\"secondaryPhoneNumber\":\"6125669026\",\"email\":\"0Cally.Fallon@email.com\",\"allegiantCustomerId\":\""+CUSTOMER_ACCT_ID+"\",\"parsingBatch\":\"1390473784_298389220\",\"channelId\":1,\"token\":\"myToken\"}";
- //   public static final String MEMBER_REGISTRATION_JSON = "{\"recordId\":\"10123\", \"externalProviderId\":\""+FBC_ACCT_ID+"\",\"lastName\":\"Fallon\",\"firstName\":\"Cally\",\"middleInitial\":\" \",\"prefix\":\"AMiss\",\"suffix\":\"Ph.D\",\"fullName\":\"Fallon Cally\",\"addressLine1\":\"2165 Libero.Rd.\",\"addressLine2\":\"Ap #875-3531 Et Rd.\",\"city\":\"Jandrain-Jandrenouille\",\"state\":\"AK\",\"zipCode\":\".20083\",\"primaryPhoneNumber\":\"136567581\",\"secondaryPhoneNumber\":\"6125669026\",\"email\":\"0Cally.Fallon@email.com\",\"parsingBatch\":\"1390473784_298389220\",\"channelId\":1,\"token\":\"myRCToken\"}";
- //   public static final String MEMBER_REGISTRATION_JSON = "{\"recordId\":\"10123\", \"externalProviderId\":\""+FBC_ACCT_ID+"\",\"lastName\":\"Fallon\",\"firstName\":\"Cally\",\"middleInitial\":\" \",\"prefix\":\"AMiss\",\"suffix\":\"Ph.D\",\"fullName\":\"Fallon Cally\",\"addressLine1\":\"2165 Libero.Rd.\",\"addressLine2\":\"Ap #875-3531 Et Rd.\",\"city\":\"Jandrain-Jandrenouille\",\"state\":\"AK\",\"zipCode\":\".20083\",\"primaryPhoneNumber\":\"136567581\",\"secondaryPhoneNumber\":\"6125669026\",\"email\":\"0Cally.Fallon@email.com\",\"allegiantCustomerId\":null,\"parsingBatch\":\"1390473784_298389220\",\"channelId\":1,\"token\":\"myRCToken\"}";
-public static final String MEMBER_REGISTRATION_JSON = "{\"recordId\":\"10123\", \"externalProviderId\":\""+FBC_ACCT_ID+"\",\"lastName\":\"Fallon\",\"firstName\":\"Cally\",\"middleInitial\":\" \",\"prefix\":\"AMiss\",\"suffix\":\"Ph.D\",\"fullName\":\"Fallon Cally\",\"addressLine1\":\"2165 Libero.Rd.\",\"addressLine2\":\"Ap #875-3531 Et Rd.\",\"city\":\"Jandrain-Jandrenouille\",\"state\":\"AK\",\"zipCode\":\".20083\",\"primaryPhoneNumber\":\"136567581\",\"secondaryPhoneNumber\":\"6125669026\",\"email\":\"0Cally.Fallon@email.com\",\"allegiantCustomerId\":\"\",\"parsingBatch\":\"1390473784_298389220\",\"channelId\":1,\"token\":\"myRCToken\"}";
-
-   // public static final String MEMBER_UPDATE_JSON = "{\"loyaltyAccountId\":\"6761023031994\",\"externalProviderId\":\"4134361776535813\",\"fullName\":\"Mr Clayton Andrei Jr\",\"addressLine1\":\"4590 Wilkinson Street\",\"addressLine2\":\"6009 ON AAAAAAAAA\",\"city\":\"Austin\",\"state\":\"CA\",\"zipCode\":\"6186\",\"email\":\"AndreiClayton@rhyta.com\",\"parsingBatch\":\"1397817086_603333107\", \"token\":\"f971c633287139e384f950f58067e8c7\"}";
+    public static final String MEMBER_REGISTRATION_JSON = "{\"recordId\":\"10123\"" +
+            ", \"externalProviderId\":\"" + EXTERNAL_PROVIDER_ID + "\""
+            + ",\"lastName\":\"Fallon\",\"firstName\":\"Cally\",\"middleInitial\":\" \",\"prefix\":\"AMiss\",\"suffix\":\"Ph.D\",\"fullName\":\"Fallon Cally\",\"addressLine1\":\"2165 Libero.Rd.\",\"addressLine2\":\"Ap #875-3531 Et Rd.\",\"city\":\"Jandrain-Jandrenouille\",\"state\":\"AK\",\"zipCode\":\".20083\",\"primaryPhoneNumber\":\"136567581\",\"secondaryPhoneNumber\":\"6125669026\",\"email\":\"0Cally.Fallon@email.com\""
+            + ",\"allegiantCustomerId\":\""+ CUSTOMER_ACCT_ID + "\""
+            + ",\"parsingBatch\":\"1390473784_298389220\",\"channelName\":\"FNBO Premium Card\",\"token\":\"myToken\"}";
 
     public static final String REWARD_POINTS_JMS_DESTINATION = "jms.queue.loyalty.exported.rewardPoints";
     public static final String MEMBER_REGISTRATION_JMS_DESTINATION = "jms.queue.loyalty.exported.memberRegistration";
-  //  public static final String MEMBER_UPDATE_JMS_DESTINATION = "jms.queue.loyalty.exported.memberUpdate";
 
     public static void main(String[] args) throws ParseException {
 
@@ -49,22 +56,19 @@ public static final String MEMBER_REGISTRATION_JSON = "{\"recordId\":\"10123\", 
         CommandLineParser parser = new PosixParser();
         CommandLine cmd = parser.parse(options, args);
 
-        //String host = "loyjbsms11-public.lolacloud.com";
-       // String host = "pink.cloudtroopers.ro";
+        // String host = "loyjbsms11-public.lolacloud.com";
+        // String host = "pink.cloudtroopers.ro";
         String host = "localhost";
         // String host = "pink.cloudtroopers.ro";
         String port = "61613";
         String user = "guest";
         String pass = "P@ssword1";
 
-        String destination = MEMBER_REGISTRATION_JMS_DESTINATION;
-        String json = MEMBER_REGISTRATION_JSON;
+        String destination = REWARD_POINTS_JMS_DESTINATION;
+        String json = REWARD_POINTS_JSON_MERGE;
 
-//        String destination = MEMBER_UPDATE_JMS_DESTINATION;
-//        String json = MEMBER_UPDATE_JSON;
-
-//        String destination = REWARD_POINTS_JMS_DESTINATION;
-//        String json = REWARD_POINTS_JSON_MERGE;
+//        String destination = MEMBER_REGISTRATION_JMS_DESTINATION;
+//        String json = MEMBER_REGISTRATION_JSON;
 
         if (cmd.hasOption("h")) {
             host = cmd.getOptionValue("h");
@@ -93,9 +97,11 @@ public static final String MEMBER_REGISTRATION_JSON = "{\"recordId\":\"10123\", 
 
             for (int i = 0; i < 1; i++) {
                 System.out.println(" msg " + i);
-                String newJson = json.replaceAll(""+FBC_ACCT_ID,""+(FBC_ACCT_ID+i));
+                String newJson = json.replaceAll("" + EXTERNAL_PROVIDER_ID, "" + (EXTERNAL_PROVIDER_ID + i));
                 newJson = newJson.replaceAll(""+CUSTOMER_ACCT_ID, ""+(CUSTOMER_ACCT_ID+i));
                 newJson = newJson.replaceAll(""+LOYALTY_ACCT_ID, ""+(LOYALTY_ACCT_ID+i));
+                // newJson = newJson.replaceAll(""+POINTS, ""+(POINTS));
+                // newJson = newJson.replaceAll(SIGN, SIGN);
                 send(host, port, user, pass, destination, newJson, connection);
             }
             connection.disconnect();
