@@ -6,3 +6,5 @@ nbproject/private
 .classpath
 .project
 .settings/
+.idea/
+*.iml
