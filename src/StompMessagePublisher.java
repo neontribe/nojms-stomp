@@ -25,7 +25,7 @@ public class StompMessagePublisher {
 
     // reward points constants
     private static final long LOYALTY_ACCT_ID = 6761023031987L;
-    private static final long POINTS = 3000;
+    private static final long POINTS = 100;
     private static final String SIGN = "+";
 
     private static final String FNBO_CHANNEL_NAME = "FNBO Premium Card";
@@ -59,7 +59,7 @@ public class StompMessagePublisher {
             + ",\"allegiantCustomerId\":\"" + CUSTOMER_ACCT_ID + "\""
             + ",\"parsingBatch\":\"1390473784_298389220\",\"channelName\":\"FNBO Premium Card\",\"token\":\"myToken\"}";
 
-    public static final String REWARD_POINTS_JMS_DESTINATION = "jms.queue.loyalty.exported.rewardPoi12nts";
+    public static final String REWARD_POINTS_JMS_DESTINATION = "jms.queue.loyalty.exported.rewardPoints";
     public static final String MEMBER_REGISTRATION_JMS_DESTINATION = "jms.queue.loyalty.exported.memberRegistration";
 
     public static void main(String[] args) throws ParseException {
@@ -86,8 +86,8 @@ public class StompMessagePublisher {
         String destination = REWARD_POINTS_JMS_DESTINATION;
         String json = REWARD_POINTS_JSON_MERGE;
 
-        // String destination = MEMBER_REGISTRATION_JMS_DESTINATION;
-        // String json = MEMBER_REGISTRATION_JSON;
+//        String destination = MEMBER_REGISTRATION_JMS_DESTINATION;
+//        String json = MEMBER_REGISTRATION_JSON;
 
         if (cmd.hasOption("h")) {
             host = cmd.getOptionValue("h");
