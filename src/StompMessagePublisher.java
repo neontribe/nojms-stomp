@@ -57,7 +57,8 @@ public class StompMessagePublisher {
             + "\""
             + ",\"lastName\":\"Fallon\",\"firstName\":\"Cally\",\"middleInitial\":\" \",\"prefix\":\"AMiss\",\"suffix\":\"Ph.D\",\"fullName\":\"Fallon Cally\",\"addressLine1\":\"2165 Libero.Rd.\",\"addressLine2\":\"Ap #875-3531 Et Rd.\",\"city\":\"Jandrain-Jandrenouille\",\"state\":\"AK\",\"zipCode\":\".20083\",\"primaryPhoneNumber\":\"136567581\",\"secondaryPhoneNumber\":\"6125669026\",\"email\":\"0Cally.Fallon@email.com\""
             + ",\"allegiantCustomerId\":\"" + CUSTOMER_ACCT_ID + "\""
-            + ",\"parsingBatch\":\"1390473784_298389220\",\"channelName\":\"FNBO Premium Card\",\"token\":\"myToken\"}";
+            + ",\"parsingBatch\":\"1390473784_298389220\",\"channelName\":\"" + FNBO_CHANNEL_NAME
+            + "\",\"token\":\"myToken\"}";
 
     public static final String REWARD_POINTS_JMS_DESTINATION = "jms.queue.loyalty.exported.rewardPoints";
     public static final String MEMBER_REGISTRATION_JMS_DESTINATION = "jms.queue.loyalty.exported.memberRegistration";
@@ -83,11 +84,11 @@ public class StompMessagePublisher {
         String user = "guest";
         String pass = "P@ssword1";
 
-        String destination = REWARD_POINTS_JMS_DESTINATION;
-        String json = REWARD_POINTS_JSON_MERGE;
+        // String destination = REWARD_POINTS_JMS_DESTINATION;
+        // String json = REWARD_POINTS_JSON_MERGE;
 
-//        String destination = MEMBER_REGISTRATION_JMS_DESTINATION;
-//        String json = MEMBER_REGISTRATION_JSON;
+        String destination = MEMBER_REGISTRATION_JMS_DESTINATION;
+        String json = MEMBER_REGISTRATION_JSON;
 
         if (cmd.hasOption("h")) {
             host = cmd.getOptionValue("h");
