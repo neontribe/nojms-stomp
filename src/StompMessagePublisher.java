@@ -25,7 +25,7 @@ public class StompMessagePublisher {
 
     // reward points constants
     private static final long LOYALTY_ACCT_ID = 6761023031987L;
-    private static final long POINTS = 100;
+    private static final long POINTS = 1000;
     private static final String SIGN = "+";
 
     private static final String FNBO_CHANNEL_NAME = "FNBO Premium Card";
@@ -49,7 +49,7 @@ public class StompMessagePublisher {
             + ", \"channelName\":\""
             + FNBO_CHANNEL_NAME
             + "\""
-            + ", \"transactionComment\":\"coment\", \"transactionTime\":1389782282, \"operatorId\":-1, \"token\":\"8eb0a18834d37b94e398e64677bcd85d\"}";
+            + ", \"transactionComment\":\"coment\", \"transactionTime\":1389782282, \"operatorId\":-1, \"token\":\"8eb0a18834d37b94e398e64677bcd851\"}";
 
     public static final String MEMBER_REGISTRATION_JSON = "{\"recordId\":\"10123\""
             + ", \"externalProviderId\":\""
